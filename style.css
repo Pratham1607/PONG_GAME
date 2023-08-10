@@ -1,0 +1,82 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: var(--backgroud-color);
+    overflow: hidden;
+}
+
+:root {
+    /* Hue is a degree on the color wheel from 0 to 360. 0 (or 360) is red, 120 is green, 240 is blue. */
+    --hue: 200;
+    --saturation: 50%;
+    --foreground-color: hsl(var(--hue), var(--saturation), 75%);
+    --backgroud-color: hsl(var(--hue), var(--saturation), 20%);
+}
+
+.paddle {
+    --position: 50;
+
+    position: absolute;
+    background-color: var(--foreground-color);
+
+    /*For positioning the paddles at center*/
+    top: calc(var(--position)*1vh);
+    transform: translateY(-50%);
+    /* Positions the paddle to the center */
+    width: 1vh;
+    height: 10vh;
+    border-radius: 50vh;
+}
+
+/* Applying styles to an element that has both the .paddle class and the .left class. This is called a compound selector or a combined class selector. */
+.paddle.left {
+    left: 1vw;
+}
+
+.paddle.right {
+    right: 1vw;
+}
+
+.ball {
+    --x: 50;
+    --y: 50;
+
+    position: absolute;
+    background-color: var(--foreground-color);
+
+    /*For positioning the paddles at center*/
+    left: calc(var(--x)*1vw);
+    top: calc(var(--y)*1vh);
+    transform: translateY(-50%, -50%);
+    border-radius: 50%;
+    width: 2.5vh;
+    height: 2.5vh;
+}
+
+.score {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 7vh;
+    color: var(--foreground-color);
+}
+
+/* selecting direct child of score class */
+.score>* {
+    flex: grow 1;
+    flex-basis: 0;
+    /* padding: top/bottom left/right */
+    padding: 0 2vh;
+    margin: 1vh 0;
+    opacity: .5;
+}
+
+.score>:first-child {
+    text-align: right;
+    border-right: 0.5vh solid var(--foreground-color);
+}
