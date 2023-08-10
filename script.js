@@ -1,4 +1,3 @@
-// The game will run in an Update loop
 import Ball from "./Ball.js"
 import Paddle from "./Paddle.js"
 
@@ -13,12 +12,8 @@ let lastTime;
 function update(time) {
     if (lastTime != null) {
         const delta = time - lastTime;
-        // Update code
-        // From Ball.js and Paddle .js
         ball.update(delta, [playerPaddle.rect(), computerPaddle.rect()]);
-
-        // Making the computerPaddle move along with ball
-        computerPaddle.update(delta, ball.y);// From Paddle.js
+        computerPaddle.update(delta, ball.y);
         
         const hue = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--hue"));
         document.documentElement.style.setProperty("--hue", hue + delta * 0.01);
